@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KarenHR</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      font-family: sans-serif;
+      text-align: center;
+      direction: rtl;
+      color: white;
+    }
+
+    /* Splash */
+    #splash {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeOut 3s forwards;
+    }
+
+    h1 {
+      font-size: 4em;
+      font-weight: bold;
+      background: linear-gradient(270deg, orange, limegreen, orange);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgbFlow 2s infinite linear;
+    }
+
+    @keyframes rgbFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+
+    /* Main screen */
+    #main {
+      display: none;
+      padding: 40px;
+    }
+
+    .wifi-name {
+      background: rgba(255,255,255,0.1);
+      padding: 15px 25px;
+      margin: 10px auto;
+      width: fit-content;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background 0.3s;
+    }
+
+    .wifi-name:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    #password {
+      margin-top: 30px;
+      font-size: 1.4em;
+      color: yellow;
+    }
+
+    #footer-link {
+      margin-top: 60px;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: cyan;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    #footer-link .triangle {
+      width: 0; 
+      height: 0; 
+      border-left: 10px solid yellow;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+    }
+
+    #rgb-screen {
+      display: none;
+      height: 100vh;
+      background: linear-gradient(45deg, red, green, blue, yellow, purple);
+      background-size: 1000% 1000%;
+      animation: rgbBG 5s infinite linear;
+      color: white;
+      text-align: center;
+      padding-top: 100px;
+      position: relative;
+    }
+
+    @keyframes rgbBG {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .loading-text {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      width: 80%;
+      height: 20px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: lime;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .footer-text {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="splash">
+    <h1>KarenHR</h1>
+  </div>
+
+  <div id="main">
+    <h2>Wifi :</h2>
+    <div class="wifi-name" onclick="showPassword('9d1fe7ce')">Mobinet-00ce</div>
+    <div class="wifi-name">Mahan</div>
+    <div class="wifi-name">AK</div>
+
+    <div id="password"></div>
+
+    <div id="footer-link" onclick="startHack()">
+      کانال آپارات
+      <div class="triangle"></div>
+    </div>
+  </div>
+
+  <div id="rgb-screen">
+    <div class="loading-text">Loading</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="footer-text">KarenHR - کارن اچ آر</div>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+    }, 3000);
+
+    function showPassword(pwd) {
+      document.getElementById('password').innerText = "Password : " + pwd;
+    }
+
+    function startHack() {
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('rgb-screen').style.display = 'block';
+
+      let progress = 0;
+      const bar = document.getElementById('progress-fill');
+
+      const interval = setInterval(() => {
+        progress += 2;
+        bar.style.width = progress + "%";
+        if (progress >= 100) {
+          clearInterval(interval);
+          window.location.href = "https://www.aparat.com/Karen.GTR";
+        }
+      }, 100); // 100ms * 50 = 5000ms = 5 seconds
+    }
+  </script>
+
+</body>
+</html>
