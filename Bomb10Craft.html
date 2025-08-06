@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bomb10Craft Minecraft Server</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@700&display=swap');
+
+  body, html {
+    margin:0; padding:0; height:100vh; font-family: 'Vazirmatn', sans-serif;
+    direction: rtl;
+    overflow: hidden;
+  }
+
+  /* RGB background for splash */
+  #splash {
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; width: 100vw;
+    font-size: 3rem; font-weight: 700; color: white;
+    text-align: center;
+    user-select: none;
+  }
+
+  /* Main menu */
+  #mainMenu {
+    display: none;
+    background: white;
+    height: 100vh; width: 100vw;
+    padding: 2rem;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-gap: 40px;
+    justify-content: center;
+    margin-top: 4rem;
+  }
+
+  .menu-button {
+    background: white;
+    border: 3px solid #333;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: black;
+    cursor: pointer;
+    padding: 40px 10px;
+    user-select: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .menu-button:hover {
+    background-color: #f0f0f0;
+  }
+
+  /* Pages */
+  .page {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  /* Ranks Page */
+  #ranks {
+    background: linear-gradient(90deg, #ff004d, #ff8c00, #ffffff);
+    color: black;
+  }
+  .rank-list {
+    max-width: 600px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .rank-item {
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .rank-Pro { background-color: #28a745; }
+  .rank-Dark { background-color: #6c757d; }
+  .rank-GOD { background-color: gold; color: black; }
+  .rank-Devil { background-color: #dc3545; }
+  .rank-TryHard { background: linear-gradient(to right, #00008B, #000000); }
+  .rank-Legendary { background-color: #6f42c1; }
+  .rank-PVP { background: #00bfff; color: black; }
+  .rank-BOOSTER { background-color: #ff69b4; }
+  .rank-Angle { background-color: #fff; color: black; border: 1px solid #ccc; }
+  .rank-Bomb10Craft { background: linear-gradient(to right, #28a745, #ffff00); color: black; font-weight: 900; }
+
+  /* Buy Rank Page */
+  #buyRank {
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+    color: black;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  /* Guide Page */
+  #guide {
+    background: white;
+    color: black;
+    max-width: 600px;
+    margin: 3rem auto;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 15px #ddd;
+  }
+
+  /* Discord Page */
+  #discord {
+    background: white;
+    color: red;
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 10rem;
+  }
+
+  /* Back button */
+  .back-button {
+    margin-top: 2rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #333;
+    user-select: none;
+    display: inline-block;
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+  }
+  .back-button:hover {
+    background-color: #eee;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Splash -->
+<div id="splash">
+  <div>
+    Bomb10Craft<br />
+    <small style="font-size:1.5rem;">MineCraft Server !</small>
+  </div>
+</div>
+
+<!-- Main Menu -->
+<div id="mainMenu">
+  <div class="button-grid">
+    <div class="menu-button" id="btnRanks">رنک ها</div>
+    <div class="menu-button" id="btnBuyRank">خرید رنک</div>
+    <div class="menu-button" id="btnGuide">راهنمایی سرور</div>
+    <div class="menu-button" id="btnDiscord">دیسکورد</div>
+  </div>
+</div>
+
+<!-- Ranks Page -->
+<div id="ranks" class="page">
+  <h2 style="text-align:center;">رنک ها</h2>
+  <div class="rank-list">
+    <div class="rank-item rank-Pro">Pro <span>۱۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-Dark">Dark <span>۲۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-GOD">GOD <span>۳۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-Devil">Devil <span>۴۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-TryHard">TryHard <span>۵۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-Legendary">Legendary <span>۶۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-PVP">PVP <span>۷۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-BOOSTER">BOOSTER <span>۸۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-Angle">Angle <span>۹۰,۰۰۰ تومان</span></div>
+    <div class="rank-item rank-Bomb10Craft">Bomb10Craft <span>۱۰۰,۰۰۰ تومان</span></div>
+  </div>
+  <div class="back-button" id="backFromRanks">بازگشت</div>
+</div>
+
+<!-- Buy Rank Page -->
+<div id="buyRank" class="page">
+  <h2>خرید رنک</h2>
+  <p>
+    به سرور ماینکرفت<br />
+    <b>Bomb10Craft.aternos.me</b><br />
+    بیاید و رنک مورد نظر را انتخاب کنین.<br />
+    بعد از فعال شدن رنک پول را به شماره کارت:<br />
+    <b>5047 0616 6587 8019</b><br />
+    واریز کنید.<br />
+    مالک سرور: <b>karen</b>
+  </p>
+  <div class="back-button" id="backFromBuyRank">بازگشت</div>
+</div>
+
+<!-- Guide Page -->
+<div id="guide" class="page">
+  <h2>راهنمایی سرور</h2>
+  <p>
+    سرور بمب۱۰کرفت!<br />
+    سروری برای ماینکرفت با گیم مودهای متنوع!<br />
+    با آیپی: <b>Bomb10Craft.aternos.me</b><br />
+    دارای سورویوال، اسلایم، فان، رول پلی و بدوارز تقدیم می‌کند!<br />
+    مالک: <b>کارن</b>
+  </p>
+  <div class="back-button" id="backFromGuide">بازگشت</div>
+</div>
+
+<!-- Discord Page -->
+<div id="discord" class="page">
+  <h2>سرور دیسکورد</h2>
+  <p>به زودی! در آپدیت بعدی</p>
+  <div class="back-button" id="backFromDiscord">بازگشت</div>
+</div>
+
+<audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/03/23/audio_0dbaccc95c.mp3?filename=montagem-bailao-6532.mp3" loop></audio>
+
+<script>
+  // RGB effect on splash background
+  const splash = document.getElementById('splash');
+  let colors = [
+    'rgb(255,0,0)',
+    'rgb(0,255,0)',
+    'rgb(0,0,255)'
+  ];
+  let colorIndex = 0;
+  let rgbInterval;
+
+  function startRGB() {
+    rgbInterval = setInterval(() => {
+      splash.style.backgroundColor = colors[colorIndex];
+      colorIndex = (colorIndex + 1) % colors.length;
+    }, 300);
+  }
+
+  function stopRGB() {
+    clearInterval(rgbInterval);
+  }
+
+  // After 3 seconds, move to main menu with background transitions
+  function showMainMenu() {
+    stopRGB();
+    // Animate background color change: yellow → orange → white
+    let step = 0;
+    let bgColors = ['#ffff00', '#ff7f00', '#ffffff'];
+    splash.style.transition = 'background-color 1.5s ease-in-out';
+
+    function nextStep() {
+      if (step < bgColors.length) {
+        splash.style.backgroundColor = bgColors[step];
+        step++;
+        setTimeout(nextStep, 1500);
+      } else {
+        // Hide splash, show main menu
+        splash.style.display = 'none';
+        mainMenu.style.display = 'block';
+        bgMusic.play();
+      }
+    }
+    nextStep();
+  }
+
+  // Pages and buttons
+  const mainMenu = document.getElementById('mainMenu');
+  const btnRanks = document.getElementById('btnRanks');
+  const btnBuyRank = document.getElementById('btnBuyRank');
+  const btnGuide = document.getElementById('btnGuide');
+  const btnDiscord = document.getElementById('btnDiscord');
+
+  const ranks = document.getElementById('ranks');
+  const buyRank = document.getElementById('buyRank');
+  const guide = document.getElementById('guide');
+  const discord = document.getElementById('discord');
+
+  const backFromRanks = document.getElementById('backFromRanks');
+  const backFromBuyRank = document.getElementById('backFromBuyRank');
+  const backFromGuide = document.getElementById('backFromGuide');
+  const backFromDiscord = document.getElementById('backFromDiscord');
+
+  const bgMusic = document.getElementById('bgMusic');
+
+  function hideAllPages() {
+    mainMenu.style.display = 'none';
+    ranks.style.display = 'none';
+    buyRank.style.display = 'none';
+    guide.style.display = 'none';
+    discord.style.display = 'none';
+  }
+
+  btnRanks.onclick = () => {
+    hideAllPages();
+    ranks.style.display = 'block';
+  };
+  btnBuyRank.onclick = () => {
+    hideAllPages();
+    buyRank.style.display = 'block';
+  };
+  btnGuide.onclick = () => {
+    hideAllPages();
+    guide.style.display = 'block';
+  };
+  btnDiscord.onclick = () => {
+    hideAllPages();
+    discord.style.display = 'block';
+  };
+
+  backFromRanks.onclick = () => {
+    hideAllPages();
+    mainMenu.style.display = 'block';
+  };
+  backFromBuyRank.onclick = () => {
+    hideAllPages();
+    mainMenu.style.display = 'block';
+  };
+  backFromGuide.onclick = () => {
+    hideAllPages();
+    mainMenu.style.display = 'block';
+  };
+  backFromDiscord.onclick = () => {
+    hideAllPages();
+    mainMenu.style.display = 'block';
+  };
+
+  // Start splash RGB effect and then transition
+  startRGB();
+  setTimeout(showMainMenu, 3000);
+</script>
+
+</body>
+</html>
